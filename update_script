@@ -1,0 +1,33 @@
+#!/bin/sh
+
+ADDON="myaddon"
+
+# no changes needed below this line ------------------------
+
+ADDON_DIR="/usr/local/addons/${ADDON}"
+CONFIG_DIR="/usr/local/etc/config"
+
+echo "Installing ${ADDON}..."
+
+# create directory and copy files
+mkdir -p "${ADDON_DIR}"
+cp -a ./* "${ADDON_DIR}/"
+chmod 755 "${ADDON_DIR}"/bin/* "${ADDON_DIR}"/www/cgi-bin/*
+chmod 644 "${ADDON_DIR}"/etc/*
+
+# copy service-script
+cp "${ADDON_DIR}/${ADDON}" "${CONFIG_DIR}/rc.d/${ADDON}"
+chmod 755 "${CONFIG_DIR}/rc.d/${ADDON}"
+
+# create WebUI-Link
+mkdir -p "${CONFIG_DIR}/addons/www"
+rm -f "${CONFIG_DIR}/addons/www/${ADDON}"
+ln -s "${ADDON_DIR}/www" "${CONFIG_DIR}/addons/www/${ADDON}"
+
+echo "${ADDON} installation finished."
+
+exit 0
+
+# ---------------------------------------------------------
+
+# EOF
