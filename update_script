@@ -12,7 +12,7 @@ echo "Installing ${ADDON}..."
 # create directory and copy files
 mkdir -p "${ADDON_DIR}"
 cp -a ./* "${ADDON_DIR}/"
-chmod 755 "${ADDON_DIR}"/bin/* "${ADDON_DIR}"/www/cgi-bin/*
+chmod 755 "${ADDON_DIR}"/bin/*
 chmod 644 "${ADDON_DIR}"/etc/*
 
 # copy service-script
